@@ -37,7 +37,33 @@ class CustomButton: UIButton {
         titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         
     }
+    
+    required init(titles: String) {
+        super.init(frame: CGRect.zero)
+        
+        let titleAttributs: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.label,
+        ]
+        let attributstring = NSMutableAttributedString(string: titles, attributes: titleAttributs)
+        attributstring.insert(NSAttributedString(attachment: chevronRight()), at: 0)
+        setAttributedTitle(attributstring, for: UIControl.State.normal)
+    }
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    func chevronRight() -> NSTextAttachment {
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "chevron.right")
+        attachment.bounds = CGRect(x: 0, y: -5, width: 20, height: 20)
+        attachment.image?.withTintColor(UIColor.red)
+        return attachment
+    }
+    func chevronDown() -> NSTextAttachment {
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "chevron.down")
+        attachment.bounds = CGRect(x: 0, y: -5, width: 20, height: 20)
+        attachment.image?.withTintColor(UIColor.red)
+        return attachment
     }
 }
