@@ -16,7 +16,19 @@ class ViewController: UIViewController {
         return lebel
     }()
     
-    let string = NSMutableAttributedString(string: " hellow world this is good news", attributes: [.foregroundColor:UIColor.label,
+//    let button: UIButton = {
+//        let button = UIButton()
+//        button.frame = CGRect(x: 20, y:300 , width: 200, height: 100)
+//        //button.setTitle("hellow world", for: .normal)
+//       // button.setTitleColor(.red, for: .normal)
+//        button.backgroundColor = .systemGray
+//      //  button.layer.cornerRadius = 30
+//
+//        return button
+//
+//    }()
+    
+    let string = NSMutableAttributedString(string: " hellow world", attributes: [.foregroundColor:UIColor.label,
                                                                                             
                                                                                                   .font:UIFont.systemFont(ofSize: 25)])
    // let attachment = NSTextAttachment()
@@ -24,13 +36,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(labe)
-       
-       // string.append(NSAttributedString(attachment: attachment))
+      
+        let button = CustomButton(title: "Title", subtitle: "Subtitle")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.frame = CGRect(x: 100, y: 50, width: 200, height: 200)
+        view.addSubview(button)
+        
+//        let horizontalConstraint = button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//           let verticalConstraint = button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//           NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+//
+        //view.addSubview(button)
         string.insert(NSAttributedString(attachment: nsTextAttachment()), at: 0)
         string.append(.init(string: " ===== you can append"))
         labe.attributedText = string
+       // button.addTarget(self, action: #selector(tape), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
+//    @objc func tape() {
+//        print("done done")
+//    }
 
     func nsTextAttachment() -> NSTextAttachment {
         let attachment = NSTextAttachment()
